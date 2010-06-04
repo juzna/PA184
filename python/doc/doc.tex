@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage[english]{babel}
+\title{Great deluge algorithm}
+
+\begin{document}
+\maketitle 
+\section{Requirements}
+The program was written and tested in Python2.5.\\
+To visualize solution you need to install {\tt{}matplotlib} and {\tt{}numpy} module.
+
+\section{Usage}
+
+To call a program type:
+\begin{verbatim}python  main.py [options]\end{verbatim}
+
+Available options:
+
+\begin{itemize}
+
+\item{--action=}
+\begin{verbatim}python main.py -a=action\end{verbatim}
+Select the goal of run:
+    \begin{itemize}
+                \item{\tt{}c} All constructive heuristics.
+                \item{\tt{}cgreedy} Greedy constructive heuristic.
+                \item{\tt{}cpeckish} Peckish constructive heuristic.
+                \item{\tt{}crandom} Random constructive heuristic.
+                \item{\tt{}iterative} Iterative local search with random initialisation.
+                \item{\tt{}deluge} Great deluge with default initialisation.
+                \item{\tt{}delugeall} Run great deluge with peckish, random and greedy initialisation.
+                \item{\tt{}delugerandom} Run great deluge with random initialisation.
+                \item{\tt{}delugegreedy} Run great deluge with greedy initialisation.
+                \item{\tt{}delugepeckish} Run great deluge with peckish initialisation.
+    \end{itemize}
+        
+\item{--dataset=}
+\begin{verbatim}python main.py -d=number\end{verbatim}
+Select the set from input file to be used. If you type {\tt{}-d=*}, all sets are used instead.
+
+\item{--help}
+\begin{verbatim}python main.py -h\end{verbatim}
+Print list of commands.
+
+\item{--input=}
+\begin{verbatim}python main.py -i=path\end{verbatim}
+Path to input file. Default path is 'sets/gap1.txt'.
+
+\item{--solution}
+\begin{verbatim}python main.py -s\end{verbatim}
+Print solution as table job:worker.
+
+\item{--visualize}
+\begin{verbatim}python main.py -v\end{verbatim}
+Visualize solution.\\
+Required modules: numpy, matplotlib
+
+\item{--time}
+\begin{verbatim}python main.py -t\end{verbatim}
+Print time marks (start and end of run).
+
+\item{--beautyoff}
+\begin{verbatim}python main.py -b\end{verbatim}
+Strip some decorative texts.
+
+\end{itemize}
+
+Examples:
+\begin{verbatim}
+python main.py -i="sets/gap9.txt" -s -t -d=* -a=delugerandom
+python main.py -i="sets/gap9.txt" -t -v -a=delugerandom
+\end{verbatim}
+
+\section{Structure}
+\begin{itemize}
+    \item{main.py} Call other programmes and mark time.
+    \item{local$\_{}$search.py} Implement great deluge and iterative search.
+    \item{constructive$\_{}$heuristics.py} Implement constructive heuristics.
+    \item{visualisation.py} Implement generating of 3d image using matplotlib and numpy.
+    \item{process$\_{}$data.py} Load and process input.
+    \item{img} Examples of visualization. Green color means good solution, more red in RGB means worse solution. 
+\end{itemize}
+\end{document}

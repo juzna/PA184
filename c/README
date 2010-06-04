@@ -1,0 +1,40 @@
+1/ COMPILE
+ for release: g++ -O2 -pthread -o main main.c
+ for debugging: g++ -ggdb3 -pthread -o main main.c
+
+
+
+2/ USAGE
+Usage: ./main jobs workers job-randomizer worker-randomizer dataset [set-index]
+   Job order funcions: constant order order-r price-diff
+   Worker order funcions: constant order order-r free-capacity price
+   Randomizers: rand linear add
+
+Sample: ./main order order - - sets/gap1.txt 0 # priorize jobs and workers by it's order, no randomize, dataset gap1.txt, first problem
+Sample: ./main price-diff free-capacity linear linear sets/gap1.txt 0 # heuristics for jobs and workers, peckish
+Sample: ./main - - rand rand sets/gap1.txt 0 # no heuristics for jobs and workers, totally random
+
+Environment variables:
+  DEBUG=1 - print debug informations
+  SIMPLE=1 - print just problem number, price, used space and time in miliseconds
+  Sample: SIMPLE=1 ./main order order - - sets/gap1.txt 0
+
+
+
+3/ ALGORITHM
+There is universal greedy solver with several hooks, which has to be implemented to solve problems.
+This hooks are:
+ - getJobsPriority - computes priority for jobs
+ - getWorkersPriority - computes priority for workers
+ - randomizeJobs, randomizeWorkers - add some random component to priorities
+The higher priority, the sooner is job (resp. worker) assigned.
+
+Algorithm then works as follows:
+  call getJobsPriority and order jobs
+  solveGreedy(problem of size n):
+    findNextJob
+    order workers
+    foreach worker:
+      assign worker to job
+      recursion of problem os size (n-1)
+      (if recursion failed, continue by trying another worker)

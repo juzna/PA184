@@ -1,0 +1,15 @@
+These data sets for the GAP have been taken from the data sets
+available at the OR Library:
+
+http://people.brunel.ac.uk/~mastjjb/jeb/orlib/gapinfo.html
+
+The format for each of these data files is:
+
+- number of different problem sets
+- for each problem set in turn:
+  number of workers (m), number of tasks (n)
+- for each worker j (j=1,...,m) in turn:
+  cost of allocating task i to worker j
+- for each worker j (j=1,...,m) in turn:
+  resource consumed (tij) in allocating task i to worker j
+- resource capacity (Tj) of agent j (j=1,...,m)

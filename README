@@ -1,0 +1,6 @@
+Project for PA184 - Heuristic Search Methods
+
+In this directory:
+ c/       - constructive heuristics written in C
+ python/  - great deluge written in Python
+ sets/    - data sets (problem definitions)
